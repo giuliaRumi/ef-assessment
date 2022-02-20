@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { ICountrySummary } from '../../homePage/CountrySummary'
-import { ICountryDetail } from '../../drillIn/CountryDetail'
+import { ICountrySummary } from './models/ICountrySummary'
+import { ICountryDetail } from './models/ICountryDetail'
 
 const instance = axios.create({
     baseURL: 'https://restcountries.com',
@@ -15,11 +15,6 @@ export async function getCountries(geo?: string): Promise<ICountrySummary[]> {
 
     const response = await instance.get('/v2/all')
     return response.data
-}
-
-export async function getCountry(country: string): Promise<ICountryDetail> {
-    const response = await instance.get(`/v2/name/${country}`)
-    return response.data[0]
 }
 
 export async function getCountryByCode(code: string): Promise<ICountryDetail> {

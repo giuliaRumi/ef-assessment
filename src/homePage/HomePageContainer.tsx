@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { getRegions } from '../resources/countries/regionsService'
-import { CountrySummary, ICountrySummary } from './CountrySummary'
+import { CountrySummary } from './CountrySummary'
 import { getCountries } from '../resources/countries/countryService'
 import { Search } from './Search'
 import { Filter } from './Filter'
 import _ from 'lodash'
+import { ICountrySummary } from '../resources/countries/models/ICountrySummary'
 
 export interface IHomePageContainer {
     setCountryDrillIn: (country: string) => void

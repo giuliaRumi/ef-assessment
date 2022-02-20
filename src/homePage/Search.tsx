@@ -1,4 +1,4 @@
-import { Box, FormControl, OutlinedInput } from '@mui/material'
+import { Box, OutlinedInput } from '@mui/material'
 import * as React from 'react'
 
 export interface ISearch {

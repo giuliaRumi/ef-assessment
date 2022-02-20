@@ -1,10 +1,3 @@
-import axios from 'axios'
-
-const instance = axios.create({
-    baseURL: 'https://restcountries.com',
-    timeout: 30000,
-})
-
 export function getRegions(): string[] {
     // const response = await axios.get('/v2/all?fields=region')
     // const regions = response.data

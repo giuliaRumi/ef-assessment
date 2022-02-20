@@ -3,27 +3,7 @@ import { getCountryByCode } from '../resources/countries/countryService'
 import { Box, Button } from '@mui/material'
 import _ from 'lodash'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
-
-export interface ICountryDetail {
-    flags: {
-        svg: string
-        png: string
-    }
-    name: string
-    nativeName: string
-    population: number
-    region: string
-    subregion: string
-    capital: string
-    currencies: {
-        name: string
-    }[]
-    topLevelDomain: string[]
-    languages: {
-        name: string
-    }[]
-    borders: string[]
-}
+import { ICountryDetail } from '../resources/countries/models/ICountryDetail'
 
 interface ICountryDetailInternal {
     setCountryDrillIn: (country: string | undefined) => void

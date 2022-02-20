@@ -1,17 +1,6 @@
 import { Box } from '@mui/material'
 import * as React from 'react'
-
-export interface ICountrySummary {
-    flags: {
-        svg: string
-        png: string
-    }
-    name: string
-    population: number
-    region: string
-    capital: string
-    alpha3Code: string
-}
+import { ICountrySummary } from '../resources/countries/models/ICountrySummary'
 
 interface ICountrySummaryInternal extends ICountrySummary {
     setCountryDrillIn: (country: string) => void
