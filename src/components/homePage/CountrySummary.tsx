@@ -30,7 +30,7 @@ export const CountrySummary: React.FC<ICountrySummaryInternal> = ({
             }}
         >
             <img
-                className={"Clickable"}
+                className={'Clickable'}
                 src={flags.png}
                 alt={alpha3Code + '-flag'}
                 style={{

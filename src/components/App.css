@@ -15,6 +15,10 @@
         margin-top: 30px !important;
     }
 
+    .searchFiler div {
+        width: 100% !important;
+    }
+
     .countryDetailContainer {
         flex-direction: column !important;
         lign-items: inherit !important;

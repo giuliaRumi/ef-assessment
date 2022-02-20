@@ -1,24 +1,40 @@
 import * as React from 'react'
-import { getCountryByCode } from '../../resources/countries/countryService'
 import { Box, Button } from '@mui/material'
 import _ from 'lodash'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
 import { ICountryDetail } from '../../resources/countries/models/ICountryDetail'
+import { ICountrySummary } from '../../resources/countries/models/ICountrySummary'
+import { countryServiceCached } from '../../resources/countries/CountryServiceCached'
 
-interface ICountryDetailInternal {
+interface ICountryDetailInternal extends ICountryDetail {
+    borderDetails: ICountrySummary[]
+}
+
+interface ICountryDetailProps {
     setCountryDrillIn: (country: string | undefined) => void
     countryDrillIn: string
 }
-export const CountryDetail: React.FC<ICountryDetailInternal> = ({
+export const CountryDetail: React.FC<ICountryDetailProps> = ({
     countryDrillIn,
     setCountryDrillIn,
 }) => {
-    const [country, setCountry] = React.useState<ICountryDetail>()
+    const [country, setCountry] = React.useState<ICountryDetailInternal>()
 
     React.useEffect(() => {
         ;(async () => {
-            const countryFetched = await getCountryByCode(countryDrillIn)
-            setCountry(countryFetched)
+            const countryFetched =
+                await countryServiceCached.getCountryDetailByCode(
+                    countryDrillIn
+                )
+            const borderCountriesSummary = await Promise.all(
+                _.map(countryFetched.borders, b =>
+                    countryServiceCached.getCountrySummaryByCode(b)
+                ).values()
+            )
+            setCountry({
+                ...countryFetched,
+                borderDetails: borderCountriesSummary,
+            })
         })()
     }, [countryDrillIn])
 
@@ -36,8 +52,8 @@ export const CountryDetail: React.FC<ICountryDetailInternal> = ({
                 style={{
                     width: '6.25rem',
                     marginLeft: '3.5rem',
-                    marginTop: '6.25rem',
-                    marginBottom: '6.25rem',
+                    marginTop: '5rem',
+                    marginBottom: '5rem',
                 }}
                 variant="outlined"
                 color="inherit"
@@ -53,7 +69,7 @@ export const CountryDetail: React.FC<ICountryDetailInternal> = ({
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-evenly',
-                    alignItems: 'center',
+                    alignItems: 'inherit',
                 }}
             >
                 <img
@@ -63,6 +79,7 @@ export const CountryDetail: React.FC<ICountryDetailInternal> = ({
                     style={{
                         width: '31.25rem',
                         height: '18.75rem',
+                        paddingTop: '1.5rem',
                     }}
                 />
                 <div
@@ -77,7 +94,6 @@ export const CountryDetail: React.FC<ICountryDetailInternal> = ({
                         style={{
                             fontWeight: 'bold',
                             paddingBottom: '0.62rem',
-                            paddingTop: '0.93rem',
                         }}
                     >
                         {country?.name}
@@ -164,14 +180,16 @@ export const CountryDetail: React.FC<ICountryDetailInternal> = ({
                                 Border Countries:
                             </span>
                             <div>
-                                {_(country?.borders)
+                                {_(country?.borderDetails)
                                     .map(border => (
                                         <Button
                                             variant="outlined"
                                             color="inherit"
-                                            key={border}
+                                            key={border.alpha3Code}
                                             onClick={() =>
-                                                setCountryDrillIn(border)
+                                                setCountryDrillIn(
+                                                    border.alpha3Code
+                                                )
                                             }
                                             style={{
                                                 marginLeft: '.4rem',
@@ -179,7 +197,7 @@ export const CountryDetail: React.FC<ICountryDetailInternal> = ({
                                                 marginRight: '.4rem',
                                             }}
                                         >
-                                            {border}
+                                            {border.name}
                                         </Button>
                                     ))
                                     .value()}

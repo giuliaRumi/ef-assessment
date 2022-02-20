@@ -18,3 +18,19 @@ export interface ICountryDetail {
     }[]
     borders: string[]
 }
+
+const dummyCountryDetails: Required<ICountryDetail> = {
+    borders: [],
+    capital: '',
+    currencies: [],
+    flags: { png: '', svg: '' },
+    languages: [],
+    name: '',
+    nativeName: '',
+    population: 0,
+    region: '',
+    subregion: '',
+    topLevelDomain: [],
+}
+
+export const countryDetailKeys = Object.keys(dummyCountryDetails)

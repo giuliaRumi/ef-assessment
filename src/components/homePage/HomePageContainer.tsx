@@ -1,18 +1,17 @@
 import * as React from 'react'
-import { getRegions } from '../../resources/countries/regionsService'
 import { CountrySummary } from './CountrySummary'
-import { getCountries } from '../../resources/countries/countryService'
 import { Search } from './Search'
 import { Filter } from './Filter'
 import _ from 'lodash'
 import { ICountrySummary } from '../../resources/countries/models/ICountrySummary'
+import { countryServiceCached } from '../../resources/countries/CountryServiceCached'
 
 export interface IHomePageContainer {
     setCountryDrillIn: (country: string) => void
 }
 export const HomePageContainer = React.memo<IHomePageContainer>(
     ({ setCountryDrillIn }) => {
-        const regions = getRegions()
+        const regions = countryServiceCached.getRegions()
         const [region, setRegion] = React.useState<string>('All')
         const [countries, setCountries] = React.useState<ICountrySummary[]>()
         const [selectedCountries, setSelectedCountries] =
@@ -21,9 +20,10 @@ export const HomePageContainer = React.memo<IHomePageContainer>(
 
         React.useEffect(() => {
             ;(async () => {
-                const countries = await getCountries(
-                    region === 'All' ? undefined : region
-                )
+                const countries =
+                    await countryServiceCached.getCountriesSummary(
+                        region === 'All' ? undefined : region
+                    )
                 setCountries(countries)
             })()
         }, [region])

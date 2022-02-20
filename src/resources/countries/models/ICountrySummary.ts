@@ -9,3 +9,14 @@ export interface ICountrySummary {
     capital: string
     alpha3Code: string
 }
+
+const dummyCountrySummary: Required<ICountrySummary> = {
+    alpha3Code: '',
+    capital: '',
+    flags: { png: '', svg: '' },
+    name: '',
+    population: 0,
+    region: '',
+}
+
+export const countrySummaryKeys = Object.keys(dummyCountrySummary)
