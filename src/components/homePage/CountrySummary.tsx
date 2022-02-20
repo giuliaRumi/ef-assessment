@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import * as React from 'react'
-import { ICountrySummary } from '../resources/countries/models/ICountrySummary'
+import { ICountrySummary } from '../../resources/countries/models/ICountrySummary'
 
 interface ICountrySummaryInternal extends ICountrySummary {
     setCountryDrillIn: (country: string) => void
@@ -30,8 +30,9 @@ export const CountrySummary: React.FC<ICountrySummaryInternal> = ({
             }}
         >
             <img
+                className={"Clickable"}
                 src={flags.png}
-                alt="React Logo"
+                alt={alpha3Code + '-flag'}
                 style={{
                     width: '15.62rem',
                     height: '9.37rem',

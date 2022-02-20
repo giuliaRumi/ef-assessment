@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { getCountryByCode } from '../resources/countries/countryService'
+import { getCountryByCode } from '../../resources/countries/countryService'
 import { Box, Button } from '@mui/material'
 import _ from 'lodash'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
-import { ICountryDetail } from '../resources/countries/models/ICountryDetail'
+import { ICountryDetail } from '../../resources/countries/models/ICountryDetail'
 
 interface ICountryDetailInternal {
     setCountryDrillIn: (country: string | undefined) => void

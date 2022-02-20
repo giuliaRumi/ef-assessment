@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.Clickable {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 375px) {
     .searchFiler {
         flex-direction: column;

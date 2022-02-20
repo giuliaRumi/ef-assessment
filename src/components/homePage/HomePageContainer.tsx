@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { getRegions } from '../resources/countries/regionsService'
+import { getRegions } from '../../resources/countries/regionsService'
 import { CountrySummary } from './CountrySummary'
-import { getCountries } from '../resources/countries/countryService'
+import { getCountries } from '../../resources/countries/countryService'
 import { Search } from './Search'
 import { Filter } from './Filter'
 import _ from 'lodash'
-import { ICountrySummary } from '../resources/countries/models/ICountrySummary'
+import { ICountrySummary } from '../../resources/countries/models/ICountrySummary'
 
 export interface IHomePageContainer {
     setCountryDrillIn: (country: string) => void
@@ -33,7 +33,6 @@ export const HomePageContainer = React.memo<IHomePageContainer>(
                 const filtered = countries?.filter(c =>
                     c.name.toLowerCase().startsWith(countrySearch.toLowerCase())
                 )
-                console.log(filtered)
                 setSelectedCountries(filtered)
             } else {
                 setSelectedCountries(countries)
