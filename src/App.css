@@ -1,38 +1,58 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@media screen and (max-width: 375px) {
+    .searchFiler {
+        flex-direction: column;
+    }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+    .filterContainer {
+        margin-top: 30px !important;
+    }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+    .countryDetailContainer {
+        flex-direction: column !important;
+        lign-items: inherit !important;
+        margin-left: 12px;
+    }
 
-.App-link {
-  color: #61dafb;
-}
+    .countryDetailFlag {
+        width: 21.87rem !important;
+        height: 12.5rem !important;
+        margin-left: 0.94rem;
+    }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    .countryDetailContainer div {
+        width: 20.3rem !important;
+    }
+
+    .countryDetailInfo {
+        flex-direction: column !important;
+    }
+
+    .countryDetailBorder {
+        max-width: 21.87rem;
+        flex-wrap: wrap;
+        flex-direction: column !important;
+    }
+
+    .headerTitle {
+        font-size: 1rem !important;
+        padding-left: 0.62rem !important;
+    }
+
+    .headerMode {
+        padding-right: 0.62rem !important;
+    }
+
+    .headerMode button {
+        font-size: 0.9rem !important;
+    }
+
+    .countryDetailBackButton {
+        margin-left: 1.25rem !important;
+        margin-top: 3.1rem !important;
+        margin-bottom: 3.1rem !important;
+    }
 }
