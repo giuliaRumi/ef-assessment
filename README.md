@@ -1,3 +1,5 @@
+The code get automatically deployed here https://wonderful-brattain-8fc8b4.netlify.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
